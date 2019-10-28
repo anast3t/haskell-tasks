@@ -1,10 +1,9 @@
-sqroot a b c | ((a == 0) && (b == 0)) = error "Корней нет" 
-             | ((a == 0) && (b /= 0)) = let x = -c/b in (x, x) --почему тут необходима конструкция let??(если ставил просто -с/b постоянно выдавал ошибку "cannot construct the infinite type: b" в строчке с вычислением дискриминанта)
-             | (d == 0) = error "Один корень"
-             | (d < 0) = error "Нет действительных корней"
-             | (a/=0) = (x1,x2) --error "Оба корня есть"
-                where 
-                 x1 = ((-b) + sqd) / (2*a)
-                 x2 = ((-b) - sqd) / (2*a) 
-                 d = (b*b) - (4 * a * c)
-                 sqd = sqrt (d)
+sqroot:: Double -> Double -> Double -> (Double, Double)
+sqroot 0 0 0 = (0, 0)
+sqroot 0 0 _ = error "Корней нет"
+sqroot 0 b c = ((-c)/b, (-c)/b) 
+sqroot a b c = if d < 0 then error "Нет действительных корней" else (x1,x2) where
+    x1 = ((-b) + sqd) / (2*a)
+    x2 = ((-b) - sqd) / (2*a) 
+    d = (b*b) - (4 * a * c)
+    sqd = sqrt (d) 
