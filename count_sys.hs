@@ -57,4 +57,4 @@ frd base x = if x >= base then (frd base (x `div` base) ++ [x `mod` base]) else 
 convertFromTo:: Int -> Int -> [Char] -> [Char]
 convertFromTo baseF baseT str = fromDecimal baseT (toDecimal baseF str)
 ---------------------------------------------------------------
---все вылезающие функции потом причешу (время три утра я в щи) 
+--все вылезающие функции потом причешу (время три утра я в щи) :( 
