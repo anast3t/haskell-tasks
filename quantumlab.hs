@@ -14,10 +14,10 @@ instance (Show a, Eq a, Ord a, Num a, Fractional a) => Show(Complex a) where
 
 --
 instance (Show a, Eq a, Ord a, Num a, Fractional a) => Ord(Complex a) where 
-    (<)  (ToComplex r1 i1) (ToComplex r2 i2) = if ((r1*r1 + i1*i1) <  (r2*r2 + i2*i2)) then True else False
-    (>)  (ToComplex r1 i1) (ToComplex r2 i2) = if ((r1*r1 + i1*i1) >  (r2*r2 + i2*i2)) then True else False
-    (<=) (ToComplex r1 i1) (ToComplex r2 i2) = if ((r1*r1 + i1*i1) <= (r2*r2 + i2*i2)) then True else False
-    (>=) (ToComplex r1 i1) (ToComplex r2 i2) = if ((r1*r1 + i1*i1) >= (r2*r2 + i2*i2)) then True else False
+    (<)  (ToComplex r1 i1) (ToComplex r2 i2) = ((r1*r1 + i1*i1) <  (r2*r2 + i2*i2))
+    (>)  (ToComplex r1 i1) (ToComplex r2 i2) = ((r1*r1 + i1*i1) >  (r2*r2 + i2*i2))
+    (<=) (ToComplex r1 i1) (ToComplex r2 i2) = ((r1*r1 + i1*i1) <= (r2*r2 + i2*i2))
+    (>=) (ToComplex r1 i1) (ToComplex r2 i2) = ((r1*r1 + i1*i1) >= (r2*r2 + i2*i2))
 --
 instance (Show a, Eq a, Ord a, Num a, Fractional a)=> Eq(Complex a) where
     (==) (ToComplex r1 i1) (ToComplex r2 i2) = if r1==r2 && i1==i2 then True else False
@@ -83,7 +83,8 @@ fromPairList ((x,s):[]) = ToQB ([ToQS x s])
 fromPairList ((x,s):as) = ToQB ([ToQS x s]) + (fromPairList as) 
 
 scalarProduct:: Qubit (Complex a) -> Qubit (Complex a) -> a
---шо?
+scalarProduct [] [] = 0
+scalarProduct ((ToQS (ToComplex r1 i1) _):xs) ((ToQS (ToComplex r2 i2) _):ys) = r1*r2 + i1*i2 + scalarProduct ToQS(xs) ToQS(ys) 
 
 --examples and bases
 x = ToComplex 1 1
