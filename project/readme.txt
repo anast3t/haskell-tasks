@@ -2,8 +2,7 @@ Install guide:
 
 1) Install hArduino using Cabal (maybe working only on linux) - https://hackage.haskell.org/package/hArduino
 2) Install HGamer3D with this guide - http://www.hgamer3d.org/index.html
-
-
+3) Download https://drive.google.com/file/d/1kUHCh0X5w_Xr1iz6sSJJkOdOmne3nyKG/view?usp=sharing
 
 
 
